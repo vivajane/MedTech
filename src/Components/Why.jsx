@@ -42,9 +42,9 @@ const Why = () => {
     const toggleShowMore = showMore ? lists : lists.slice(0, 3);
     
   return (
-    <div className="md:px-16 px-6 sm:px-8 py-8">
+    <div className="md:px-16 px-6 sm:px-8">
       <div>
-        <h1 className="text-3xl text-center py-2 font-bold">Why Choose Us</h1>
+        <h1 className="text-3xl text-center py-6 font-bold">Why Choose Us</h1>
         <div className="md:flex gap-8">
           {" "}
           <div className="w-full">

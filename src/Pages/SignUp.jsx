@@ -58,7 +58,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="py-4  w-fullfont-ibm">
+    <div className="py-4 h-screen flex flex-col justify-center items-center w-full font-ibm">
+      
       <form
         onSubmit={onSubmitHandler}
         className="w-80 md:w-96 shadow rounded-xl space-y-2 mx-auto p-8 "

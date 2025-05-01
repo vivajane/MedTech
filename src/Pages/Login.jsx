@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   return (
-    <div className="py-4  w-fullfont-ibm">
+    <div className=" w-full h-screen flex flex-col items-center justify-center font-ibm">
       <form
         onSubmit={onSubmitHandler}
         className=" md:w-96 shadow w-80 rounded-xl space-y-2 mx-auto p-8 "

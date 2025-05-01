@@ -19,7 +19,7 @@ const TopRated = () => {
       {/* Added padding to container */}
       <h1 className="text-3xl font-bold text-[#2E2E2E]">Top Specialists</h1>
       <p className="text-gray-500 text-lg font-manrope">Meet the highest-rated doctors, trusted by thousands of patients</p>
-      <ul className="grid md:grid-cols-4 grid-cols-2 gap-4 py-6  ">
+      <ul className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 py-6  ">
         {" "}
         {/* Remove gap, margin, and padding */}
         {showDoctors &&
@@ -31,12 +31,12 @@ const TopRated = () => {
               >
                 <div className="w-full py-4">
                   <img 
-                    className="w-64 hover:scale-110 duration-300 h-64 object-cover rounded-md"
+                    className="sm:w-64 hover:scale-110 duration-300 sm:h-64 w-full object-cover rounded-md"
                     src={doctor.img}
                     alt={doctor.name}
                   />
                 </div>
-                <h1 className="text-lg font-bold">{doctor.name}</h1>
+                <h1 className="md:text-lg font-bold">{doctor.name}</h1>
                 <h3 className="text-md font-bold text-gray-500">{doctor.specialty}</h3>
               </li>
             );

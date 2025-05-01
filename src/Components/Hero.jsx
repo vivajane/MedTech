@@ -21,11 +21,11 @@ const figures = [
 
 const Hero = () => {
   return (
-    <section className="bg-[#E1EEFF] w-full pt-8 ">
+    <section className="bg-[#E1EEFF] w-full pt-20 ">
       <div className="h-full ">
         <div className="flex justify-between px-6 sm:px-8 lg:px-16">
           <div className="w-1/2 py-6">
-            <h1 className="md:text-[52px] font-bold md:leading-[60px] text-[#021526]">
+            <h1 className="md:text-[52px] sm:text-4xl text-2xl font-bold md:leading-[60px] text-[#021526]">
               Find & Search Your
               <span className="text-[#0360D9]"> Favourite</span> Doctor
             </h1>
