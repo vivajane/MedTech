@@ -8,7 +8,7 @@ const Context = (props) => {
   useEffect(() =>{
     const seeDoctors = async() => {
       try {
-        const res = await axios.get("http://127.0.0.1:3005/doctors")
+        const res = await axios.get("https://backend-5egy.onrender.com/doctors")
         console.log (res.data);
         setDoctors(res.data)
       } catch (error) {
