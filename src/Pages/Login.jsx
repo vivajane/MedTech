@@ -78,7 +78,7 @@ const Login = () => {
         </div>
         <p className="text-gray-500">
           Don't have an account?{" "}
-          <span className="text-[#0360D9]">
+          <span className="pl-2 text-[#0360D9]">
             <a href="/signup">Sign Up</a>
           </span>
         </p>

@@ -24,7 +24,7 @@ const reviews = [
 
 const Reviews = () => {
   return (
-    <section className="py-10 bg-[#F9FAFB] px-6 md:px-16 sm:px-8">
+    <section className="py-10 mt-8 bg-[#F9FAFB] px-6 md:px-16 sm:px-8">
       <div className="text-center mb-10">
         <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-[#2E2E2E]">
           What Our Members Are Saying

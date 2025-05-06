@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/medmatch.png";
+// import logo from "../assets/medmatch.png";
 import { IoReorderThree } from "react-icons/io5";
 import { FaTimes } from "react-icons/fa";
 
@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <div className={` font-ibm  relative ${show  && "h-screen"}`}>
+    <div className={` font-ibm  relative ${show && "h-screen"}`}>
       <header className=" flex bg-white py-4 px-6 justify-between items-center sm:px-8 lg:px-16 ">
         <div className="font-ibm text-2xl font-bold">
           <NavLink to="/">
@@ -68,7 +68,7 @@ const Header = () => {
             className={({ isActive }) =>
               isActive ? "underline text-[#0360D9]" : ""
             }
-            to="/physicians"
+            to="/alldoctors"
           >
             Physicians
           </NavLink>
@@ -93,7 +93,8 @@ const Header = () => {
           {show ? <FaTimes /> : <IoReorderThree className="text-3xl" />}
         </div>
       </header>
-      <div onClick={closeMenu}
+      <div
+        onClick={closeMenu}
         className={`${
           show ? "inset-0 z-50 " : "hidden"
         } w-full  overflow-hidden transition ease-in-out absolute top-16 duration-1000  py-14 bg-[#E1EEFF] border-b border-[#0360D9]  space-y-5 `}
@@ -128,7 +129,7 @@ const Header = () => {
             className={({ isActive }) =>
               isActive ? "underline text-[#0360D9]" : ""
             }
-            to="/physicians"
+            to="/alldoctors"
           >
             Physicians
           </NavLink>
