@@ -11,6 +11,7 @@ import AllDoctors from "./Pages/AllDoctors";
 import Appointment from "./Pages/Appointment";
 import AppointmentPage from "./Pages/AppointmentPage";
 import SubmitAppointment from "./Pages/SubmitAppointment";
+import { useState } from "react";
 
 
 const Layout = ({ children }) => {
@@ -26,7 +27,8 @@ const Layout = ({ children }) => {
   );
 };
 
-function App({setAdd, add}) {
+function App() {
+  const[add, setAdd] = useState([])
   return (
     <>
       <Layout>
@@ -39,7 +41,7 @@ function App({setAdd, add}) {
           <Route path="/doctordesc/:doctordescId" element={<DoctorsDesc/>}></Route>
           <Route path="/appointment" element ={<Appointment setAdd={setAdd} />}></Route>
           <Route path="/appointmentpage" element ={<AppointmentPage />}></Route>
-          <Route path="/submit-appointment" element ={<SubmitAppointment add= {add} setAdd={setAdd} />}></Route>
+          <Route path="/submit-appointment" element ={<SubmitAppointment add={add} />}></Route>
           
         </Routes>
       </Layout>

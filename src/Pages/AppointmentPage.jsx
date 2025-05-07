@@ -28,12 +28,12 @@ const AppointmentPage = () => {
 
         {/* Health Tips Card */}
         <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
-          <h2 className="text-2xl font-semibold mb-2">💡 Health Tips</h2>
+          <h2 className="text-2xl font-semibold mb-2"> Health Tips</h2>
           <ul className="list-disc list-inside text-gray-700 space-y-1">
-            <li>💧 Drink plenty of water — at least 8 glasses a day.</li>
-            <li>🛏️ Sleep 7–9 hours each night for proper rest.</li>
-            <li>🏃 Stay active — even 30 mins of walking helps.</li>
-            <li>🥦 Eat a variety of fruits and vegetables daily.</li>
+            <li> Drink plenty of water — at least 8 glasses a day.</li>
+            <li>Sleep 7–9 hours each night for proper rest.</li>
+            <li> Stay active — even 30 mins of walking helps.</li>
+            <li> Eat a variety of fruits and vegetables daily.</li>
           </ul>
         </div>
 

@@ -1,4 +1,6 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+
 
 const Description = (props) => {
   const { doctor } = props;
@@ -36,9 +38,9 @@ const Description = (props) => {
       </div>
 
       <div className="mt-6">
-        <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+        <NavLink to="/appointmentpage" className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
           Book Appointment
-        </button>
+        </NavLink>
       </div>
     </div>
   );

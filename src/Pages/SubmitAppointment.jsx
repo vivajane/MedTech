@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState } from 'react'
 
-const SubmitAppointment = () => {
-    const[add, setAdd] = useState([])
+
+const SubmitAppointment = ({add}) => {
+    
   return (
     <div>
-      <h1></h1>
+      <h1>ghjuiii</h1>
       <div>
         {add.map((item) => {
           return (
