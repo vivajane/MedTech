@@ -8,7 +8,7 @@ const Context = (props) => {
   useEffect(() =>{
     const seeDoctors = async() => {
       try {
-        const res = await axios.get("https://backend-5egy.onrender.com/doctors")
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/doctors`);
         console.log (res.data);
         setDoctors(res.data)
       } catch (error) {

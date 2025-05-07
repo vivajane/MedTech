@@ -37,7 +37,7 @@ const Hero = () => {
             </p>
             <div className="py-4">
               <button className="bg-white hover:text-[white] hover:bg-[#021526] rounded-full sm:px-6 sm:py-3 py-2  px-3 text-xs sm:text-sm md:text-base text-black">
-                <NavLink to="/appointment">Book an Appointment</NavLink>
+                <NavLink to="/appointmentpage">Book an Appointment</NavLink>
               </button>
             </div>
           </div>
