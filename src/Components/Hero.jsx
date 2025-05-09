@@ -1,12 +1,13 @@
 import React from "react";
 import img from "../assets/doc.png";
 import { NavLink } from "react-router-dom";
+import CountUp from "react-countup";
 
 const figures = [
   {
     id: 1,
     title: "online support",
-    fig: "24/7",
+    fig: "247",
   },
   {
     id: 2,
@@ -54,11 +55,24 @@ const Hero = () => {
         <div className="bg-[#0360D9] px-12 sm:px-24 md:px-52 text-xs sm:text-sm md:text-base lg:px-72 py-4 md:py-8">
           <ul className="flex justify-between ">
             {figures.map((figure) => {
+              const isNumeric = /^\d/.test(figure.fig); // Checks if fig starts with a number
+              const numericValue = parseInt(
+                figure.fig.replace(/[^\d]/g, ""),
+                10
+              );
               return (
                 <li className=" px-4" key={figure.id}>
                   <h1 className="font-bold font-ibm sm:text-2xl md:text-4xl text-white">
-                    {figure.fig}
+                    {isNumeric ? (
+                      <>
+                        <CountUp end={numericValue} duration={2} />
+                        {figure.fig.replace(/[0-9]/g, "")}
+                      </>
+                    ) : (
+                      figure.fig
+                    )}
                   </h1>
+
                   <h1 className="text-white text-xs">{figure.title}</h1>
                 </li>
               );

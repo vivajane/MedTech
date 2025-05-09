@@ -3,6 +3,7 @@ import { ContextProvider } from "./Context";
 import Doctor from "./Doctor";
 
 const TopRated = () => {
+  const [loading, setLoading] = useState(true);
   const [showDoctors, setShowDoctors] = useState([]);
   const { doctors } = useContext(ContextProvider);
 
@@ -11,6 +12,7 @@ const TopRated = () => {
       let doctorsCopy = doctors.slice();
       doctorsCopy = doctorsCopy.filter((item) => item.isRated === true);
       setShowDoctors(doctorsCopy);
+      setLoading(false);
     }
   }, [doctors]);
 
@@ -22,16 +24,21 @@ const TopRated = () => {
       <p className="text-gray-500 pt-3 text-lg font-manrope">
         Meet the highest-rated doctors, trusted by thousands of patients
       </p>
-      <ul className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 py-6  ">
-        {" "}
-        {/* Remove gap, margin, and padding */}
-        {showDoctors &&
-          showDoctors.map((doctor) => {
-            return <>
-            <Doctor key={doctor.id} {...doctor}/>
-            </>;
-          })}
-      </ul>
+     {
+      loading ? (
+        <div className="flex justify-center items-center h-screen">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
+      ) :  <ul className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 py-6  ">
+     
+      {showDoctors &&
+        showDoctors.map((doctor) => {
+          return <div key={doctor.id}>
+          <Doctor  {...doctor}/>
+          </div>;
+        })}
+    </ul>
+     }
     </div>
   );
 };
