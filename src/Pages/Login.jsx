@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import login from "../../config/login";
+import useDirectAuth from "../assets/useDirectAuth";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
+
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
-  
+
+  const redirect = new URLSearchParams(location.search).get("redirect");
+
+  const isAuth = true;
+  useDirectAuth(isAuth);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -27,7 +34,10 @@ const Login = () => {
       if (!res) {
         setMessage("Invalid Credentials");
       } else {
-        navigate("/dashboard");
+        const redirect =
+          new URLSearchParams(location.search).get("redirect") || "/";
+        navigate(redirect);
+
       }
     } catch (error) {
       console.log(error, "error from sign in");
@@ -39,7 +49,18 @@ const Login = () => {
       <form
         onSubmit={onSubmitHandler}
         className=" md:w-96 shadow w-80 rounded-xl space-y-2 mx-auto p-8 "
-      >{message && <p className={`text-center ${message === 'Invalid Credentials' ? 'text-red-500' : 'text-green-500'}`}>{message}</p>}
+      >
+        {message && (
+          <p
+            className={`text-center ${
+              message === "Invalid Credentials"
+                ? "text-red-500"
+                : "text-green-500"
+            }`}
+          >
+            {message}
+          </p>
+        )}
         <h1 className="text-2xl text-center font-bold">Login</h1>
         <p className="text-gray-500">Login to book appointment</p>
         <div>
@@ -79,7 +100,7 @@ const Login = () => {
         <p className="text-gray-500">
           Don't have an account?{" "}
           <span className="pl-2 text-[#0360D9]">
-            <a href="/signup">Sign Up</a>
+            <NavLink to={`/signup?redirect=${redirect}`}>Sign Up</NavLink>
           </span>
         </p>
       </form>

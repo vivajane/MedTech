@@ -21,7 +21,7 @@ const figures = [
   },
 ];
 
-const Hero = () => {
+const Hero = ({ doctor }) => {
   return (
     <section className="bg-[#E1EEFF] w-full pt-20 ">
       <div className="h-full ">
@@ -38,7 +38,17 @@ const Hero = () => {
             </p>
             <div className="py-4">
               <button className="bg-white hover:text-[white] hover:bg-[#021526] rounded-full sm:px-6 sm:py-3 py-2  px-3 text-xs sm:text-sm md:text-base text-black">
-                <NavLink to="/appointmentpage">Book an Appointment</NavLink>
+                <NavLink
+                  to={doctor?.id ? `/appointment/${doctor.id}` : "#"}
+                  onClick={(e) => {
+                    if (!doctor?.id) {
+                      e.preventDefault();
+                      alert("No doctor selected for appointment.");
+                    }
+                  }}
+                >
+                  Book an Appointment
+                </NavLink>
               </button>
             </div>
           </div>

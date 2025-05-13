@@ -1,10 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { ContextProvider } from "../Components/Context";
 
 
 const Appointment = ({setAdd}) => {
-    const {doctors} = useContext(ContextProvider);
+    const {doctors, isAuth, setIsAuth} = useContext(ContextProvider);
+    const { appointmentId } = useParams();
+    const doctor = doctors.find((e) => e.id === Number(appointmentId));
+    
+    console.log(appointmentId, "from useparam");
+    
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -37,11 +42,12 @@ const Appointment = ({setAdd}) => {
     }
     setAdd((prev)  => ([...prev, newData]))
   };
+  {!doctor && <div><h1>Not Found</h1></div>}
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white shadow-md rounded-md mt-10">
       <h1 className="text-2xl font-bold mb-6 text-center">
-        Book an Appointment
+        Book an Appointment with {doctor?.name}
       </h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

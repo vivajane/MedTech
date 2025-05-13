@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import signUp from "../../config/signup";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import useDirectAuth from "../assets/useDirectAuth";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -12,6 +15,12 @@ const SignUp = () => {
     confirmPassword: "",
   });
   const [message, setMessage] = useState("");
+  const isAuthenticated = true;
+  useDirectAuth(isAuthenticated);
+
+  const redirect = new URLSearchParams(location.search).get("redirect") || "/";
+  
+  
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -61,7 +70,8 @@ const SignUp = () => {
         });
         setTimeout(()=> {
           setMessage("")
-          navigate("/login")
+          navigate(`/login?redirect=${encodeURIComponent(redirect)}`);
+
         },1000)
       }else{
         setMessage("Signup failed. Please try again.");
@@ -148,7 +158,7 @@ const SignUp = () => {
         <p className="text-gray-500">
           Already have an account?{" "}
           <span className="text-[#0360D9]">
-            <a href="/login">Login</a>
+            <NavLink href={`/login ?redirect=${redirect}`}>Login</NavLink>
           </span>
         </p>
       </form>

@@ -38,9 +38,10 @@ const Description = (props) => {
       </div>
 
       <div className="mt-6">
-        <NavLink to="/appointmentpage" className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+        <NavLink to={`/appointment/${doctor.id}`} className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
           Book Appointment
         </NavLink>
+
       </div>
     </div>
   );

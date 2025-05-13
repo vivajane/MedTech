@@ -12,6 +12,7 @@ import Appointment from "./Pages/Appointment";
 import AppointmentPage from "./Pages/AppointmentPage";
 import SubmitAppointment from "./Pages/SubmitAppointment";
 import { useState } from "react";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 
 const Layout = ({ children }) => {
@@ -39,7 +40,9 @@ function App() {
           <Route path="/dashboard" element={<DashBoards/>}></Route>
           <Route path="/alldoctors" element={<AllDoctors/>}></Route>
           <Route path="/doctordesc/:doctordescId" element={<DoctorsDesc/>}></Route>
-          <Route path="/appointment" element ={<Appointment setAdd={setAdd} />}></Route>
+          <Route path="/appointment/:appointmentId" element ={<ProtectedRoute>
+            <Appointment setAdd={setAdd} />
+          </ProtectedRoute>}></Route>
           <Route path="/appointmentpage" element ={<AppointmentPage />}></Route>
           <Route path="/submit-appointment" element ={<SubmitAppointment add={add} />}></Route>
           

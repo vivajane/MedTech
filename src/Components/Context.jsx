@@ -1,10 +1,25 @@
 import axios from "axios";
 import { createContext } from "react";
 import { useState, useEffect } from "react";
+import { auth } from "../../config/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const ContextProvider = createContext(null);
 const Context = (props) => {
   const [doctors, setDoctors] = useState([]);
+  const [search, setSearch] = useState([]);
+  const [isAuth, setIsAuth] = useState(false)
+  // const [isAuth, setIsAuth] = useState(false);
+  const [loading, setLoading] = useState(true); // important
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuth(!!user); // true if user is logged in
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
   useEffect(() =>{
     const seeDoctors = async() => {
       try {
@@ -19,8 +34,17 @@ const Context = (props) => {
     seeDoctors()
   },[])
   console.log(doctors, "doctors");
+
+
+  
   const contextValue = {
     doctors,
+    search,
+    setSearch,
+    isAuth,
+    setIsAuth,
+    
+    loading
   };
   return (
     <ContextProvider.Provider value={contextValue}>
