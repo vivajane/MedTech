@@ -4,13 +4,13 @@ import { ContextProvider } from "../Components/Context";
 import { FaAngleDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
 import Doctor from "../Components/Doctor";
-// import { FaSearch } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import Search from "./Search";
 
 const AllDoctors = () => {
   const [showDoctors, setShowDoctors] = useState([]);
   const [up, setUp] = useState(false);
-  const { doctors, search, setSearch } = useContext(ContextProvider);
+  const { doctors, search, showSearch } = useContext(ContextProvider);
   const [specialists, setSpecialists] = useState([]);
   const [filter, setFilter] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,6 +27,7 @@ const AllDoctors = () => {
   };
 
   const showFilter = () => {
+    
     let productCopy = doctors.slice();
 
     if (filter.length > 0) {
@@ -35,11 +36,27 @@ const AllDoctors = () => {
       );
     }
 
-    setShowDoctors(productCopy);
+
+     if (search) {
+      productCopy = productCopy.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+   
+    console.log("🔍 Search term:", search);
+    if (productCopy.length === 0) {
+      alert("No match found. Showing all doctors.");
+      setShowDoctors(doctors);
+    } else {
+      setShowDoctors(productCopy);
+    }
+
+    
   };
+
   useEffect(() => {
     showFilter();
-  }, [filter, search]);
+  }, [filter, search, showSearch]);
 
   const changeUp = () => {
     setUp((up) => !up);
@@ -61,20 +78,7 @@ const AllDoctors = () => {
 
   return (
     <div className="md:px-16 px-6 sm:px-8 py-4 list-none">
-      <div className="flex px-14 gap-9 pb-4 items-center">
-        <div className="flex-1">
-          <input
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full border border-black rounded-full py-2 px-4"
-            type="search"
-            name=""
-            id=""
-          />
-        </div>
-        <div>
-          <FaTimes size={20} />
-        </div>
-      </div>
+      <div>{showSearch && <Search />}</div>
       <div className="md:flex block gap-24">
         <div className="h-full md:block hidden space-y-3 py-3  w-1/5">
           <h1 className="lg:text-xl md:text-sm font-bold text-[#2E2E2E]">
@@ -99,7 +103,6 @@ const AllDoctors = () => {
               ))}
             </ul>
           )}
-          
         </div>
         <div className="md:hidden block ">
           <div className="flex justify-betweens items-center gap-3">

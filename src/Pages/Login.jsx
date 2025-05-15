@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import login from "../../config/login";
 import useDirectAuth from "../assets/useDirectAuth";
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { ContextProvider } from "../Components/Context";
 
 const Login = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
-
 
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
-
+  const { isAuth } = useContext(ContextProvider);
   const redirect = new URLSearchParams(location.search).get("redirect");
-
-  const isAuth = true;
   useDirectAuth(isAuth);
 
   const onChangeHandler = (e) => {
@@ -25,6 +25,7 @@ const Login = () => {
       ...prev,
       [name]: value,
     }));
+    setMessage("");
   };
 
   const onSubmitHandler = async (e) => {
@@ -34,10 +35,7 @@ const Login = () => {
       if (!res) {
         setMessage("Invalid Credentials");
       } else {
-        const redirect =
-          new URLSearchParams(location.search).get("redirect") || "/";
         navigate(redirect);
-
       }
     } catch (error) {
       console.log(error, "error from sign in");
@@ -91,7 +89,7 @@ const Login = () => {
         </div>
         <div className="py-2">
           <button
-            onClick={onSubmitHandler}
+            
             className="bg-[#0360D9] text-white px-6 py-2 rounded-md"
           >
             Login

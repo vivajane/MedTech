@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import signUp from "../../config/signup";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import useDirectAuth from "../assets/useDirectAuth";
+import { ContextProvider } from "../Components/Context";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const { isAuth, loading } = useContext(ContextProvider);
+  const location = useLocation();
   const [formData, setFormData] = useState({
     email: "",
     userName: "",
@@ -15,12 +18,13 @@ const SignUp = () => {
     confirmPassword: "",
   });
   const [message, setMessage] = useState("");
-  const isAuthenticated = true;
-  useDirectAuth(isAuthenticated);
+
+  useDirectAuth(isAuth);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const redirect = new URLSearchParams(location.search).get("redirect") || "/";
-  
-  
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -28,25 +32,38 @@ const SignUp = () => {
       ...prev,
       [name]: value,
     }));
+    setMessage("");
     console.log(formData, "from data");
   };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+
     console.log("🔥 Submit handler triggered");
-    if (
-      !formData.email ||
-      !formData.userName ||
-      !formData.password ||
-      !formData.confirmPassword
-    ) {
-      setMessage("All fields are required");
+    // if (
+    //   !formData.email ||
+    //   !formData.userName ||
+    //   !formData.password ||
+    //   !formData.confirmPassword
+    // ) {
+    //   setMessage("All fields are required");
+    //   return;
+    // }
+    if (!formData.userName) {
+      setMessage("Username is required");
+
       return;
     }
-    if (!formData.userName) {
-      throw new Error("Username is required");
+    const validateEmail = (email) => {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return emailRegex.test(email);
+    };
+
+    if (!validateEmail(formData.email)) {
+      setMessage("Invalid email format.");
+      return; // Stop further execution if the email is invalid
     }
-    
+
     if (formData.password !== formData.confirmPassword) {
       setMessage("Passwords do not match");
 
@@ -68,12 +85,11 @@ const SignUp = () => {
           password: "",
           confirmPassword: "",
         });
-        setTimeout(()=> {
-          setMessage("")
+        setTimeout(() => {
+          setMessage("");
           navigate(`/login?redirect=${encodeURIComponent(redirect)}`);
-
-        },1000)
-      }else{
+        }, 1000);
+      } else {
         setMessage("Signup failed. Please try again.");
       }
     } catch (error) {
@@ -91,7 +107,13 @@ const SignUp = () => {
         className="w-80 md:w-96 shadow rounded-xl space-y-2 mx-auto p-8 "
       >
         {message && (
-          <p className="text-green-500 text-sm text-center">{message}</p>
+          <p
+            className={`${
+              message.includes("success") ? "text-green-500" : "text-red-500"
+            }`}
+          >
+            {message}
+          </p>
         )}
         <h1 className="text-2xl font-bold text-center ">Create an account</h1>
 
@@ -123,6 +145,11 @@ const SignUp = () => {
             id="userName"
             value={formData.userName}
           />
+          {/* {
+            message && (
+              <p className="text-red-500 text-sm text-center">{message}</p>
+            )
+          } */}
         </div>
         <div>
           <label className="text-gray-500" htmlFor="password">
@@ -158,7 +185,7 @@ const SignUp = () => {
         <p className="text-gray-500">
           Already have an account?{" "}
           <span className="text-[#0360D9]">
-            <NavLink href={`/login ?redirect=${redirect}`}>Login</NavLink>
+            <NavLink to={`/login?redirect=${redirect}`}>Login</NavLink>
           </span>
         </p>
       </form>

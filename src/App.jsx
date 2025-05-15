@@ -13,12 +13,17 @@ import AppointmentPage from "./Pages/AppointmentPage";
 import SubmitAppointment from "./Pages/SubmitAppointment";
 import { useState } from "react";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import Profile from "./Pages/Profile";
+import EditProfile from "./Pages/EditProfile";
+
+
+
 
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const removeLogin =
-    location.pathname === "/login" || location.pathname === "/signup";
+  const removeLogin =location.pathname === "/login" || location.pathname === "/signup";
+
   return (
     <div>
       {!removeLogin && <Header />}
@@ -26,10 +31,16 @@ const Layout = ({ children }) => {
       {!removeLogin && <Footer />}
     </div>
   );
+  
 };
 
 function App() {
-  const[add, setAdd] = useState([])
+  const [add, setAdd] = useState(() => {
+    const stored = localStorage.getItem("appointment");
+    return stored ? JSON.parse(stored) : [];
+
+  });
+
   return (
     <>
       <Layout>
@@ -37,15 +48,27 @@ function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
-          <Route path="/dashboard" element={<DashBoards/>}></Route>
-          <Route path="/alldoctors" element={<AllDoctors/>}></Route>
-          <Route path="/doctordesc/:doctordescId" element={<DoctorsDesc/>}></Route>
-          <Route path="/appointment/:appointmentId" element ={<ProtectedRoute>
-            <Appointment setAdd={setAdd} />
-          </ProtectedRoute>}></Route>
-          <Route path="/appointmentpage" element ={<AppointmentPage />}></Route>
-          <Route path="/submit-appointment" element ={<SubmitAppointment add={add} />}></Route>
-          
+          <Route path="/dashboard" element={<DashBoards />}></Route>
+          <Route path="/alldoctors" element={<AllDoctors />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/edit-profile" element={<EditProfile/>}></Route>
+          <Route
+            path="/doctordesc/:doctordescId"
+            element={<DoctorsDesc />}
+          ></Route>
+          <Route
+            path="/appointment/:appointmentId"
+            element={
+              <ProtectedRoute>
+                <Appointment setAdd={setAdd} />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route path="/appointmentpage" element={<AppointmentPage />}></Route>
+          <Route
+            path="/submit-appointment"
+            element={<SubmitAppointment add={add} setAdd={setAdd} />}
+          ></Route>
         </Routes>
       </Layout>
     </>

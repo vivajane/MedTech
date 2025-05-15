@@ -7,10 +7,11 @@ import { onAuthStateChanged } from "firebase/auth";
 export const ContextProvider = createContext(null);
 const Context = (props) => {
   const [doctors, setDoctors] = useState([]);
-  const [search, setSearch] = useState([]);
+  const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
   const [isAuth, setIsAuth] = useState(false)
   // const [isAuth, setIsAuth] = useState(false);
-  const [loading, setLoading] = useState(true); // important
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -26,6 +27,8 @@ const Context = (props) => {
         const res = await axios.get(`${import.meta.env.VITE_API_URL}/doctors`);
         console.log (res.data);
         setDoctors(res.data)
+        console.log("Doctors data from API:", res.data);
+
       } catch (error) {
         console.log(error, "the error from axios");
         
@@ -43,7 +46,8 @@ const Context = (props) => {
     setSearch,
     isAuth,
     setIsAuth,
-    
+    showSearch,
+    setShowSearch,
     loading
   };
   return (
