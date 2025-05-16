@@ -23,11 +23,11 @@ const figures = [
 
 const Hero = ({ doctor }) => {
   return (
-    <section className="bg-[#E1EEFF] w-full pt-20 ">
+    <section className="bg-[#E1EEFF] w-full pt-10 md:pt-[70px] lg:pt-10 ">
       <div className="h-full ">
         <div className="flex md:flex-row flex-col justify-between w-full px-6 sm:px-8 lg:px-16">
-          <div className="md:w-1/2 py-6">
-            <h1 className="lg:text-[52px] text-[40px]  sm:leading-[50px] font-bold md:leading-[60px] text-[#021526]">
+          <div className="w-full md:w-1/2 py-6">
+            <h1 className="lg:text-[52px] text-[20px] lg:leading-[70px] sm:leading-[50px] font-bold md:leading-[30px] text-[#021526]">
               Find & Search Your
               <span className="text-[#0360D9]"> Favourite</span> Doctor
             </h1>
@@ -57,7 +57,7 @@ const Hero = ({ doctor }) => {
             <img
               src={img}
               alt="img"
-              className="md:absolute ins z-20 w-full h-full object-cover md:object-contain"
+              className="md:absolute z-20 w-full h-full object-cover md:object-contain"
             />
           </div>
         </div>
@@ -83,7 +83,7 @@ const Hero = ({ doctor }) => {
                     )}
                   </h1>
 
-                  <h1 className="text-white text-xs">{figure.title}</h1>
+                  <h1 className="text-white text-[8px] sm:text-xs">{figure.title}</h1>
                 </li>
               );
             })}

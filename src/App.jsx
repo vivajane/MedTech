@@ -14,6 +14,7 @@ import SubmitAppointment from "./Pages/SubmitAppointment";
 import { useState } from "react";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Profile from "./Pages/Profile";
+import LogoutModal from "./Components/LogoutModal";
 
 
 
@@ -67,7 +68,9 @@ function App() {
             path="/submit-appointment"
             element={<SubmitAppointment add={add} setAdd={setAdd} />}
           ></Route>
+          <Route path="/logout-modal" element={<LogoutModal/>}></Route>
         </Routes>
+        
       </Layout>
     </>
   );
