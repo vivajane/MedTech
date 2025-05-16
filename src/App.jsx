@@ -14,7 +14,6 @@ import SubmitAppointment from "./Pages/SubmitAppointment";
 import { useState } from "react";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Profile from "./Pages/Profile";
-import EditProfile from "./Pages/EditProfile";
 
 
 
@@ -51,7 +50,6 @@ function App() {
           <Route path="/dashboard" element={<DashBoards />}></Route>
           <Route path="/alldoctors" element={<AllDoctors />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/edit-profile" element={<EditProfile/>}></Route>
           <Route
             path="/doctordesc/:doctordescId"
             element={<DoctorsDesc />}

@@ -17,6 +17,9 @@ const SubmitAppointment = ({ add, setAdd }) => {
       navigate("/");
     }
   };
+  if(!add.length){
+    navigate("/");
+  }
 
   return (
     <div className="min-h-screen relative bg-gray-100 py-20">
@@ -36,7 +39,7 @@ const SubmitAppointment = ({ add, setAdd }) => {
                   <span className="font-semibold text-gray-700">
                     Full Name:
                   </span>
-                  <span>{item.patientName}</span>
+                  <span>{item.patientName.toUpperCase()}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold text-gray-700">Email:</span>
