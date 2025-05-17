@@ -1,10 +1,10 @@
 import { FaTimes } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SubmitAppointment = ({ add, setAdd }) => {
   const navigate = useNavigate();
-  const [closeModal, setCloseModal] = useState(false);
+  // const [closeModal, setCloseModal] = useState(false);
   const deleteAll = () => {
     setAdd([]);
   };
@@ -17,34 +17,26 @@ const SubmitAppointment = ({ add, setAdd }) => {
       navigate("/");
     }
   };
-  if(!add.length){
-    navigate("/");
-  }
+  useEffect(() => {
+    if (!add.length) {
+      navigate("/");
+    }
+  }, [add, navigate]);
 
   return (
-    <div className="min-h-screen relative bg-gray-100 py-20">
+    <div className="min-h-screen relative bg-gray-100 py-10">
       <div>
         {add.map((item) => {
           return (
             <div
               key={item.id}
-              className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md"
+              className="max-w-sm mx-auto mt-10 p-6 bg-white rounded-lg shadow-md"
             >
               <h2 className="text-2xl font-bold text-center  text-blue-600">
                 Appointment Summary
               </h2>
 
-              <div className="space-y-4">
-                <div className="flex justify-between">
-                  <span className="font-semibold text-gray-700">
-                    Full Name:
-                  </span>
-                  <span>{item.patientName.toUpperCase()}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-semibold text-gray-700">Email:</span>
-                  <span>{item.email}</span>
-                </div>
+              <div className="space-y-4 py-4">
                 <div className="flex justify-between">
                   <span className="font-semibold text-gray-700">Phone:</span>
                   <span>{item.tel}</span>

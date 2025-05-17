@@ -22,13 +22,14 @@ import LogoutModal from "./Components/LogoutModal";
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const removeLogin =location.pathname === "/login" || location.pathname === "/signup";
+  const removeLogin =location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/submit-appointment";
 
   return (
     <div>
       {!removeLogin && <Header />}
       {children}
       {!removeLogin && <Footer />}
+    
     </div>
   );
   
@@ -63,7 +64,7 @@ function App() {
               </ProtectedRoute>
             }
           ></Route>
-          <Route path="/appointmentpage" element={<AppointmentPage />}></Route>
+          {/* <Route path="/appointmentpage" element={<AppointmentPage />}></Route> */}
           <Route
             path="/submit-appointment"
             element={<SubmitAppointment add={add} setAdd={setAdd} />}

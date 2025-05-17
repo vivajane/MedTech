@@ -40,15 +40,7 @@ const SignUp = () => {
     e.preventDefault();
 
     console.log("🔥 Submit handler triggered");
-    // if (
-    //   !formData.email ||
-    //   !formData.userName ||
-    //   !formData.password ||
-    //   !formData.confirmPassword
-    // ) {
-    //   setMessage("All fields are required");
-    //   return;
-    // }
+   
     if (!formData.userName) {
       setMessage("Username is required");
 
@@ -76,6 +68,15 @@ const SignUp = () => {
         formData.userName
       );
       console.log("Signup response:", response);
+
+      localStorage.setItem("auth",JSON.stringify({
+        email: formData.email,
+        userName: formData.userName
+      }))
+      console.log("Saved to localStorage:", {
+  email: formData.email,
+  userName: formData.userName,
+});
 
       if (response) {
         setMessage("Account created successfully");
@@ -134,7 +135,7 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <label className="text-gray-500" htmlFor="email">
+          <label className="text-gray-500" htmlFor="userName">
             UserName
           </label>
           <input

@@ -13,15 +13,15 @@ const Appointment = ({ setAdd }) => {
 
   const [formData, setFormData] = useState({
     id: Math.floor(Math.random() * 1000),
-    patientName: "",
+    // userName: "",
     date: "",
     time: "",
     reason: "",
     tel: "",
-    email: "",
+    // email: "",
     dob: "",
     image: "",
-    gender: ""
+    gender: "",
   });
 
   const handleChange = (e) => {
@@ -39,25 +39,27 @@ const Appointment = ({ setAdd }) => {
     navigate("/submit-appointment");
     const newData = {
       id: formData.id,
-      patientName: formData.patientName,
-      email: formData.email,
+      // userName: formData.userName,
+      // email: formData.email,
       tel: formData.tel,
       date: formData.date,
       time: formData.time,
       reason: formData.reason,
       dob: formData.dob,
       image: formData.image,
-      gender: formData.gender
+      gender: formData.gender,
     };
-    localStorage.setItem("userProfile",JSON.stringify({
-      email: formData.email,
-      patientName: formData.patientName,
-      tel: formData.tel,
-      dob: formData.dob,
-      image: formData.image,
-      gender: formData.gender
-
-    }))
+    localStorage.setItem(
+      "userProfile",
+      JSON.stringify({
+        // email: formData.email,
+        // userName: formData.userName,
+        tel: formData.tel,
+        dob: formData.dob,
+        image: formData.image,
+        gender: formData.gender,
+      })
+    );
 
     setAdd((prev) => {
       const updated = [...prev, newData];
@@ -66,16 +68,16 @@ const Appointment = ({ setAdd }) => {
     });
     setFormData({
       id: Math.floor(Math.random() * 1000),
-      patientName: "",
+      // userName: "",
       doctor: "",
       date: "",
       time: "",
       reason: "",
       tel: "",
-      email: "",
+      // email: "",
       dob: "",
       image: "",
-      gender: ""
+      gender: "",
     });
   };
   if (!doctor) {
@@ -92,17 +94,7 @@ const Appointment = ({ setAdd }) => {
         Book an Appointment with {doctor?.name}
       </h1>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block mb-1 font-medium">Patient Name</label>
-          <input
-            type="text"
-            name="patientName"
-            value={formData.patientName.toLocaleUpperCase()}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md"
-            
-          />
-        </div>
+        
 
         <div>
           <label className="block mb-1 font-medium">Date</label>
@@ -115,17 +107,7 @@ const Appointment = ({ setAdd }) => {
             required
           />
         </div>
-        <div>
-          <label className="block mb-1 font-medium">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md"
-            required
-          />
-        </div>
+        
         <div>
           <label className="block mb-1 font-medium">Phone</label>
           <input
@@ -134,7 +116,8 @@ const Appointment = ({ setAdd }) => {
             value={formData.tel}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded-md"
-            required pattern="[0-9]{11}"
+            required
+            pattern="[0-9]{11}"
             minLength={11}
             maxLength={11}
           />
@@ -151,18 +134,23 @@ const Appointment = ({ setAdd }) => {
             required
           />
         </div>
-        <div>
+        {/* <div>
           <label className="block mb-1 font-medium">Image</label>
-          
+
           <input
             type="file"
             name="image"
+            accept="image/*"
             value={formData.image}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                image: URL.createObjectURL(e.target.files[0]), // Convert file to temporary URL
+              }))
+            }
             className="w-full px-3 py-2 border rounded-md"
-            
           />
-        </div>
+        </div> */}
         <div>
           <label className="block mb-1 font-medium">DOB</label>
           <input
@@ -175,15 +163,25 @@ const Appointment = ({ setAdd }) => {
           />
         </div>
         <div>
-          <label className="block mb-1 font-medium">Gender</label>
-          <input
+          <label className="block mb-1 font-medium">Sex</label>
+          {/* <input
             type="text"
             name="gender"
             value={formData.gender}
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded-md"
             required
-          />
+          /> */}
+          <div className="flex gap-5">
+            <div className="flex items-center gap-1">
+            <label htmlFor="male">Male</label>
+            <input onChange={handleChange} className="mt-1" type="radio" name="gender" value="male" checked = {formData.gender === "male"} id="" />
+          </div>
+          <div className="ml-5 flex items-center gap-1">
+            <label htmlFor="female">Female</label>
+            <input onChange={handleChange} className="mt-1" type="radio" name="gender" checked = {formData.gender === "female"} value="female" id="" />
+          </div>
+          </div>
         </div>
 
         <div className="text-black">
@@ -193,7 +191,7 @@ const Appointment = ({ setAdd }) => {
             value={formData.reason}
             onChange={handleChange}
             className="w-full px-3 py-2 border text-black border-black rounded-md"
-            rows="10"
+            rows="5"
             cols="10"
             placeholder="Brief reason for appointment"
           />
