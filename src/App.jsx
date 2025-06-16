@@ -15,6 +15,8 @@ import { useState } from "react";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Profile from "./Pages/Profile";
 import LogoutModal from "./Components/LogoutModal";
+import AboutUs from "./Pages/AboutUs";
+import ContactUs from "./Pages/Contact";
 
 
 
@@ -50,6 +52,8 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/dashboard" element={<DashBoards />}></Route>
+          <Route path="/about" element={<AboutUs />}></Route>
+          <Route path="/contact" element={<ContactUs />}></Route>
           <Route path="/alldoctors" element={<AllDoctors />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route
