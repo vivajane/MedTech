@@ -9,9 +9,9 @@ const Context = (props) => {
   const [doctors, setDoctors] = useState([]);
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
-  const [isAuth, setIsAuth] = useState(false)
+  const [isAuth, setIsAuth] = useState(false);
   // const [isAuth, setIsAuth] = useState(false);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -21,25 +21,21 @@ const Context = (props) => {
 
     return () => unsubscribe();
   }, []);
-  useEffect(() =>{
-    const seeDoctors = async() => {
+  useEffect(() => {
+    const seeDoctors = async () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_API_URL}/doctors`);
-        console.log (res.data);
-        setDoctors(res.data)
+        console.log(res.data);
+        setDoctors(res.data);
         console.log("Doctors data from API:", res.data);
-
       } catch (error) {
         console.log(error, "the error from axios");
-        
       }
-    }
-    seeDoctors()
-  },[])
+    };
+    seeDoctors();
+  }, []);
   console.log(doctors, "doctors");
 
-
-  
   const contextValue = {
     doctors,
     search,
@@ -48,7 +44,7 @@ const Context = (props) => {
     setIsAuth,
     showSearch,
     setShowSearch,
-    loading
+    loading,
   };
   return (
     <ContextProvider.Provider value={contextValue}>
