@@ -32,7 +32,7 @@ const Profile = () => {
     return <h1>No profile</h1>;
   }
   return (
-    <div className="md:px-16 px-6 sm:px-8">
+    <div className="md:px-16 px-6 mt-28 sm:px-8">
       <div>
         {/* <div>
           <img

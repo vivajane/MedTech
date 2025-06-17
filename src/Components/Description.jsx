@@ -6,7 +6,7 @@ const Description = (props) => {
   const { doctor } = props;
 
   return (
-    <div className="md:px-16 sm:px-8 px-6 mx-auto p-6 font-ibm">
+    <div className="md:px-16 sm:px-8 mt-16  px-6 mx-auto p-6 font-ibm">
       <div className="flex flex-col md:flex-row gap-8 items-center">
         <img
           src={doctor.img}

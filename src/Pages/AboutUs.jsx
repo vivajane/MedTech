@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function AboutUs() {
   return (
-    <section className="max-w-3xl mx-auto p-6 text-gray-800">
+    <section className="max-w-3xl mx-auto p-6 mt-16 text-gray-800">
       <h2 className="text-3xl font-bold mb-4">About MedTech</h2>
       <p className="mb-4">
         MedTech is dedicated to making healthcare more accessible by providing a fast, user-friendly platform for patients

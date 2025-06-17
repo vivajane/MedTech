@@ -77,7 +77,7 @@ const AllDoctors = () => {
   }, [doctors]);
 
   return (
-    <div className="md:px-16 px-6 sm:px-8 py-4 list-none">
+    <div className="md:px-16 px-6 sm:px-8 py-4 mt-20 list-none">
       <div>{showSearch && <Search />}</div>
       <div className="md:flex block gap-24">
         <div className="h-full md:block hidden space-y-3 py-3  w-1/5">

@@ -15,9 +15,9 @@ export default function ContactUs() {
   };
 
   return (
-    <section className="max-w-lg mx-auto p-6 bg-white rounded shadow">
-      <h2 className="text-3xl font-bold mb-4 text-center">Contact Us</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <section className="max-w-lg mx-auto px-6 mt-28 bg-white rounded shadow">
+      <h2 className="text-3xl font-bold mb-4 pt-4 text-center">Contact Us</h2>
+      <form onSubmit={handleSubmit} className="space-y-3  pb-6">
         <div>
           <label className="block font-medium mb-1">Name</label>
           <input
