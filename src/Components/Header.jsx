@@ -47,7 +47,7 @@ const Header = () => {
   };
 
   return (
-    <div className={` font-ibm  relative ${show && "h-screen"}`}>
+    <div className={` font-ibm fixed top-0 left-0 w-full z-10  ${show && "h-screen overflow-hidden"}`}>
       <header className=" flex bg-white py-6 px-6 justify-between items-center sm:px-8 lg:px-16 ">
         <div className="font-ibm text-2xl font-bold">
           <NavLink to="/">
@@ -129,9 +129,9 @@ const Header = () => {
             </div>
             <div onClick={showMenu}>
               {show ?  (
-              <FaTimes className="text-3xl" />
+              <FaTimes className="text-xl" />
             ) : (
-              <IoReorderThree className="text-3xl" />
+              <IoReorderThree className="text-xl" />
             )}
             </div>
             {isAuth && (
@@ -151,7 +151,7 @@ const Header = () => {
           show ? "inset-0 z-50 " : "hidden"
         } w-full  overflow-hidden transition ease-in-out absolute top-16 duration-1000  py-14 bg-[#E1EEFF] border-b border-[#0360D9]  space-y-5 `}
       >
-        <div className="flex space-y-6  py-8 flex-col items-center gap-3 text-[#0D2B46] lg:gap-6">
+        <div className="flex space-y-28  py-8 flex-col items-center gap-3 text-[#0D2B46] lg:gap-6">
           <NavLink
             className={({ isActive }) =>
               isActive ? "underline text-[#0360D9]" : ""

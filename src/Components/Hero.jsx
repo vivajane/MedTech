@@ -23,7 +23,7 @@ const figures = [
 
 const Hero = ({ doctor }) => {
   return (
-    <section className="bg-[#E1EEFF] w-full pt-10 md:pt-[70px] lg:pt-10 ">
+    <section className="bg-[#E1EEFF] w-full pt-10 md:pt-[70px] mt-20  ">
       <div className="h-full ">
         <div className="flex md:flex-row flex-col justify-between w-full px-6 sm:px-8 lg:px-16">
           <div className="w-full md:w-1/2 py-6">
