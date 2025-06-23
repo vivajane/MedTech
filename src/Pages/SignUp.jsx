@@ -40,7 +40,7 @@ const SignUp = () => {
     e.preventDefault();
 
     console.log("🔥 Submit handler triggered");
-   
+
     if (!formData.userName) {
       setMessage("Username is required");
 
@@ -69,14 +69,17 @@ const SignUp = () => {
       );
       console.log("Signup response:", response);
 
-      localStorage.setItem("auth",JSON.stringify({
-        email: formData.email,
-        userName: formData.userName
-      }))
+      localStorage.setItem(
+        "auth",
+        JSON.stringify({
+          email: formData.email,
+          userName: formData.userName,
+        })
+      );
       console.log("Saved to localStorage:", {
-  email: formData.email,
-  userName: formData.userName,
-});
+        email: formData.email,
+        userName: formData.userName,
+      });
 
       if (response) {
         setMessage("Account created successfully");
