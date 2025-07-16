@@ -10,7 +10,6 @@ const Context = (props) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
-  // const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

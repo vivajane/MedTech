@@ -6,9 +6,9 @@ const Doctor = (props) => {
     
       <li key={props.id} className="w-full flex  flex-col">
        <NavLink to={`/doctordesc/${props.id}`}>
-       <div className="w-full py-4">
+       <div className="w-full hover:py-8 py-4">
           <img
-            className="md:w-64 sm:w-52 sm:h-72  hover:scale-110 duration-300 md:h-80 w-full object-cover rounded-md"
+            className="md:w-64 sm:w-52 sm:h-72  hover:scale-105 duration-300 md:h-80 w-full object-cover rounded-md"
             src={props.img}
             alt={props.name}
           />
