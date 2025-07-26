@@ -44,6 +44,7 @@ const Context = (props) => {
     showSearch,
     setShowSearch,
     loading,
+    setLoading,
   };
   return (
     <ContextProvider.Provider value={contextValue}>

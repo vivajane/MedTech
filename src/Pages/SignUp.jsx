@@ -18,7 +18,6 @@ const SignUp = () => {
     confirmPassword: "",
   });
   const [message, setMessage] = useState("");
-
   useDirectAuth(isAuth);
   if (loading) {
     return <div>Loading...</div>;
@@ -39,11 +38,8 @@ const SignUp = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-    console.log("🔥 Submit handler triggered");
-
     if (!formData.userName) {
       setMessage("Username is required");
-
       return;
     }
     const validateEmail = (email) => {
@@ -68,6 +64,9 @@ const SignUp = () => {
         formData.userName
       );
       console.log("Signup response:", response);
+      if (!response) {
+        setMessage("Signup failed. Please try again.");
+      }
 
       localStorage.setItem(
         "auth",

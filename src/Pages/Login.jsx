@@ -5,11 +5,13 @@ import useDirectAuth from "../assets/useDirectAuth";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { ContextProvider } from "../Components/Context";
+import Loading from "../Components/Loading";
 
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
+  const { loading, setLoading } = useContext(ContextProvider);
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -29,19 +31,26 @@ const Login = () => {
   };
 
   const onSubmitHandler = async (e) => {
+    
     e.preventDefault();
+    
+    if(!loginForm.email || !loginForm.password) return setMessage("Please fill all the fields");
+    setLoading(true);
     try {
       const res = await login(loginForm.email, loginForm.password);
       if (!res) {
         setMessage("Invalid Credentials");
+        return;
       } else {
         navigate(redirect);
       }
     } catch (error) {
       console.log(error, "error from sign in");
+    } finally {
+      setLoading(false);
     }
   };
-
+  if (loading) return <Loading/>;
   return (
     <div className=" w-full h-screen flex flex-col items-center justify-center font-ibm">
       <form
@@ -51,7 +60,7 @@ const Login = () => {
         {message && (
           <p
             className={`text-center ${
-              message === "Invalid Credentials"
+              message === "Invalid Credentials" || message === "Please fill all the fields"
                 ? "text-red-500"
                 : "text-green-500"
             }`}
@@ -88,10 +97,7 @@ const Login = () => {
           />
         </div>
         <div className="py-2">
-          <button
-            
-            className="bg-[#0360D9] text-white px-6 py-2 rounded-md"
-          >
+          <button className="bg-[#0360D9] text-white px-6 py-2 rounded-md">
             Login
           </button>
         </div>

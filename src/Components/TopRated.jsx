@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ContextProvider } from "./Context";
 import Doctor from "./Doctor";
+import Loading from "./Loading";
 
 const TopRated = () => {
   const [loading, setLoading] = useState(true);
@@ -26,9 +27,7 @@ const TopRated = () => {
       </p>
      {
       loading ? (
-        <div className="flex justify-center items-center h-screen">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-        </div>
+        <Loading/>
       ) :  <ul className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 py-6  ">
      
       {showDoctors &&

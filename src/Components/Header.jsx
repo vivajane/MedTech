@@ -47,7 +47,7 @@ const Header = () => {
   };
 
   return (
-    <div className={` font-ibm fixed top-0 left-0 w-full z-10  ${show && "h-screen overflow-hidden"}`}>
+    <div className={` font-ibm fixed top-0 left-0 w-full z-30  ${show && "h-screen overflow-hidden"}`}>
       <header className=" flex bg-white py-6 px-6 justify-between items-center sm:px-8 lg:px-16 ">
         <div className="font-ibm text-2xl font-bold">
           <NavLink to="/">

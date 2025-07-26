@@ -6,6 +6,7 @@ import { FaChevronUp } from "react-icons/fa";
 import Doctor from "../Components/Doctor";
 import { FaTimes } from "react-icons/fa";
 import Search from "./Search";
+import Loading from "../Components/Loading";
 
 const AllDoctors = () => {
   const [showDoctors, setShowDoctors] = useState([]);
@@ -85,9 +86,7 @@ const AllDoctors = () => {
             Find by Specialists
           </h1>
           {loading ? (
-            <div className="flex justify-center items-center h-screen">
-              <div className="animate-spin text-center mx-auto rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-            </div>
+           <Loading/>
           ) : (
             <ul className="flex py-3 flex-col rounded-md space-y-1 border border-[#6b7b91]">
               {specialists.map((specialty) => (
