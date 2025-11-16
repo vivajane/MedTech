@@ -28,7 +28,6 @@ const AllDoctors = () => {
   };
 
   const showFilter = () => {
-    
     let productCopy = doctors.slice();
 
     if (filter.length > 0) {
@@ -37,13 +36,12 @@ const AllDoctors = () => {
       );
     }
 
-
-     if (search) {
+    if (search) {
       productCopy = productCopy.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase())
       );
     }
-   
+
     console.log("🔍 Search term:", search);
     if (productCopy.length === 0) {
       alert("No match found. Showing all doctors.");
@@ -51,8 +49,6 @@ const AllDoctors = () => {
     } else {
       setShowDoctors(productCopy);
     }
-
-    
   };
 
   useEffect(() => {
@@ -86,7 +82,7 @@ const AllDoctors = () => {
             Find by Specialists
           </h1>
           {loading ? (
-           <Loading/>
+            <Loading />
           ) : (
             <ul className="flex py-3 flex-col rounded-md space-y-1 border border-[#6b7b91]">
               {specialists.map((specialty) => (

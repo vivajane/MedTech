@@ -45,7 +45,7 @@ function App() {
   });
 
   return (
-    <>
+    <div className="max-w-[1440px] mx-auto">
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
@@ -77,7 +77,8 @@ function App() {
         </Routes>
         
       </Layout>
-    </>
+    </div>
+    
   );
 }
 
